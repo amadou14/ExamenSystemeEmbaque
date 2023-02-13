@@ -17,7 +17,7 @@ nb_engines = 3
 nb_roues = 4
 nb_moteurs = 1
 
-
+# definir les deux pompes 
 
 def pump1(sc):
     # plein :
@@ -57,7 +57,7 @@ def pump2(sc):
         "%H:%M:%S") + " : pump2" + "\n")
 
 
-# definir  les taches   de la machine 
+# definir  les taches   de la machine  il exite deux machines 
 def machine1(sc):
     time.sleep(5)
     print(datetime.datetime.now().strftime("%H:%M:%S") + " : machine 1")
@@ -81,3 +81,16 @@ def machine2(sc):
     time.sleep(5)
     print(datetime.datetime.now().strftime("%H:%M:%S") + " : machine 2")
     fichier.write(datetime.datetime.now().strftime("%H:%M:%S") + " : machine 2" + "\n")
+
+
+def main():
+    s.enter(0, 1, pump1, (s,))
+    s.enter(0, 1, pump2, (s,))
+    s.enter(0, 1, machine1, (s,))
+    s.enter(0, 1, machine2, (s,))
+    s.run()
+
+
+# calling the main function
+if __name__ == "__main__":
+    main()
